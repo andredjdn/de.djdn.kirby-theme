@@ -1,0 +1,26 @@
+title: Page
+
+files:
+  type:
+    - image
+    - document
+
+fields:
+  title:
+    label: Title
+    type:  text
+
+  coverimage:
+    label: Cover Image
+    type: image
+    width: 1/2
+
+  author:
+    label: Author
+    type: user
+    required: true
+    width: 1/2
+
+  text:
+    label: Text
+    type:  textarea

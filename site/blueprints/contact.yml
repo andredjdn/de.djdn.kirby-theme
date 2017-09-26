@@ -1,0 +1,51 @@
+title: Contact
+
+pages: false
+
+options: 
+  delete: false
+  status: false
+
+icon: address-card-o
+
+fields: 
+  title:
+    label: Title
+    type: title
+    required: true
+
+  coverimage:
+    label: Cover Image
+    type: image
+    width: 1/2
+
+  author:
+    label: Author
+    type: user
+    required: true
+    width: 1/2
+  
+  intro:
+    label: Intro
+    type: textarea
+    
+  contactoptions:
+    label: Contact Options
+    type: structure
+    style: table
+    fields:
+      title:
+        label: Title
+        type: text
+        required: true
+      content:
+        label: Content
+        type: text
+        required: true
+      level:
+        label: Level
+        type: select
+        default: main
+        options:
+          main: Main
+          sub: Sub

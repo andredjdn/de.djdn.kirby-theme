@@ -1,0 +1,13 @@
+.DS_Store
+.htaccess
+content
+index.php
+kirby
+license.md
+readme.md
+thumbs
+panel
+assets/avatars
+site/accounts
+site/cache
+site/config/config.php

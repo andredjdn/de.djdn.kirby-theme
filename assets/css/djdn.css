@@ -1,0 +1,900 @@
+/*
+* djdn v4.0
+* Copyright 2017, André Dujardin
+* https://djdn.de/
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 2017-09-26
+*/
+
+
+/* Table of contents
+––––––––––––––––––––––––––––––––––––––––––––––––––
+- Reset
+- Layout (mobile first)
+- Layout (desktop)
+- Layout (extra mobile)
+- Style
+- Custom
+*/
+
+
+/* Reset
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; }
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section { display: block }
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+table { border-collapse: collapse; border-spacing: 0; }
+strong { font-weight: 600; }
+
+/* ### Farben ### */
+/*
+    Weiss: #FEFEFE
+    Hellgrau: #F3F4F4
+    Grau: #B3B3B1
+    Dunkelgrau: #676767
+    Rot: #CD503A
+    Gruen: #239AD2
+    Blau: #ECB14D
+*/
+
+
+/* Layout (mobile first)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+header {
+    border-bottom: 3px solid #239AD2;
+    background: #F3F4F4;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+body {
+    padding: constant(safe-area-inset-top) constant(safe-area-inset-right) constant(safe-area-inset-bottom) constant(safe-area-inset-left);
+}
+body.home {
+    border-top: 3px solid #444444;
+}
+
+body.home header {
+    background: #FF4342;
+    border-bottom: none;
+}
+
+header span {
+    display: inline-block;
+    margin: 1em 0.75em;
+}
+header span a:link,
+header span a:visited {
+    color: inherit;
+    text-decoration: none;
+}
+
+section {
+    clear: both;
+}
+
+main header,
+section header,
+article header {
+    height: inherit;
+    margin-left: 0;
+    margin-right: 0;
+    font-family: inherit;
+    border: inherit;
+    background: inherit;
+}
+article header {
+    margin-top: 3em;
+}
+article:first-child header {
+    margin-top: 3em;
+}
+
+article h2 {
+    margin-bottom: 1em;
+}
+
+article a.permalink:link,
+article a.permalink:visited,
+a.readmore:link, 
+a.readmore:visited {
+    padding: 0.3em 0.5em;
+    color: #FEFEFE;
+    background: #CD503A;
+    font-size: 0.75em;
+    text-decoration: none;
+    border-bottom: none;
+}
+article a.permalink:hover,
+article a.permalink:active,
+a.readmore:hover,
+a.readmore:active {
+    background: #676767;
+}
+
+article .footnotes {
+    margin: 0 0 1.5em 0;
+    overflow: auto;
+    color: #676767;
+    background: inherit;
+}
+
+article .footnotes br {
+    display: none;
+}
+
+article .footnotes ol {
+    margin: auto auto auto 1.5em;
+}
+
+article .footnotes ol li {
+    padding: 0.5em 0;
+}
+
+article footer {
+    background: inherit;
+}
+
+footer {
+    background: #239AD2;
+    overflow: auto;
+    color: #FEFEFE;
+}
+
+footer a:link,
+footer a:visited {
+    color: #FEFEFE;
+    border-bottom: 1px solid #FFFFFF;
+}
+footer a:hover,
+footer a:active {
+    border-bottom: none;
+}
+
+.wrap {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#logo {
+    float: left;
+    margin: 0.95em 0.95em;
+    width: 49px;
+    height: 30px;
+}
+
+#menu {
+    background: #676767;
+    display: none;
+}
+.home #menu {
+    background: #444444;
+}
+#menu.active {
+    display: block;
+}
+
+#menu ul {
+    margin: 0;
+}
+
+#menu ul li {
+    padding: 0.3em 0;
+    list-style-type: none;
+}
+
+#menu a:link,
+#menu a:visited {
+    display: block;
+    line-height: 2em;
+    font-family: Verdana, Arial, sans-serif;
+    text-decoration: none;
+    color: #FEFEFE;
+    border-bottom: none;
+}
+#menu a:hover,
+#menu a:active,
+#menu a.active {
+    color: #239AD2;
+}
+
+#menubar {
+    height: 3.5em;
+}
+
+#menubar span a:link,
+#menubar span a:visited	{
+    border-bottom: none;
+}
+
+#menu-button:link,
+#menu-button:visited {
+    float: right;
+    height: 100%;
+    background: transparent;
+    text-decoration: none;
+    border-bottom: none;
+}
+#menu-button.active {
+    color: #FEFEFE;
+    background: #676767;;
+}
+.home #menu-button:active,
+.home #menu-button.active {
+    background: #444444;
+}
+#menu-button:active .menu-icon,
+#menu-button.active .menu-icon {
+    fill: #EBEBEB;
+}
+
+#menu-button {
+    width: inherit;
+    padding: 1em 1em;
+}
+
+#page.cover article:first-child header {
+    margin-top: inherit;
+}
+
+#page.cover figure.pagecoverimage {
+    padding: 0;
+    margin: 0;
+}
+
+#page.cover figure.pagecoverimage {
+    display: block;
+    height: 75px;
+    line-height: 75px;
+    overflow: hidden;
+}
+#page.cover figure.pagecoverimage img {
+    position: relative;
+    margin: -50% auto;/* virtualy height needed turn don to zero */
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+
+/* Layout (desktop)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media only screen and (min-width: 961px) {
+    body {
+        border-top: 3px solid #239AD2;
+    }
+
+    header {
+        border-bottom: inherit;
+        background: inherit;
+    }
+
+    body.home {
+        border-top: 3px solid #444444;
+    }
+    
+    body.home header {
+        background: #FF4342;
+    }
+
+    .wrap {
+        margin-left: 20%;
+        margin-right: 20%;
+        max-width: 600px;
+    }
+
+    blockquote, p > cite {
+        margin: 0 0 0 10%;
+    }
+
+    #menubar {
+        position: absolute;
+        top: 1.3em;
+        left: 2em;
+    }
+    #menubar span {
+        visibility: hidden;
+    }
+    
+    header {
+        padding: 0 0 0.9em 0;
+    }
+
+    #menu {
+        display: block;
+        background: inherit;
+        padding: 1.9em 0 1em 0;
+    }
+
+    .home #menu {
+        background: inherit;
+    }
+
+    #menu ul {
+        text-align: right;
+        height: 100%;
+        padding: 0;
+    }
+
+    #menu ul li {
+        display: inline;
+        margin: 0 0 0 0.5em;
+    }
+
+    #menu a:link,
+    #menu a:visited {
+        display: inline;
+        padding: 0.35em;
+        color: inherit;
+        text-decoration: none;
+        border-bottom: 2px solid #676767;
+    }
+
+    #menu a:hover, 
+    #menu a:active {
+        border-bottom: 2px solid #239AD2;
+    }
+    
+    .home #menu a:link,
+    .home #menu a:visited {
+        border-bottom: 2px solid #444444;
+    }
+
+    .home #menu a:hover,
+    .home #menu a:active {
+        border-bottom: 2px solid #EBEBEB;
+    }
+
+    #menu a.active {
+        border-bottom: 2px solid #239AD2;
+    }
+
+    section {
+        clear: both;
+    }
+
+    article	header {
+        margin-top: 6em;
+    }
+
+    #menu-button {
+        visibility: hidden;
+    }
+
+    #intro {
+        padding: 5.5em 0 3em 0;
+    }
+
+    #teaser {
+        padding: 3em 0;
+    }
+
+    #page.cover > article {
+        border-top: 3px solid #239AD2;
+    }
+
+    #page.cover figure.pagecoverimage {
+        height: 200px;
+        line-height: 200px;
+    }
+}
+
+
+/* Layout (extra mobile)
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+@media only screen and (max-width: 480px) {
+    .wrap {
+        margin-left: 5%;
+        margin-right: 5%
+    }
+}
+
+
+/* Style
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+*, *:after, *:before{ box-sizing:border-box; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -webkit-font-smoothing:antialiased; -moz-font-smoothing:antialiased; -o-font-smoothing:antialiased; font-smoothing:antialiased; text-rendering:optimizeLegibility }
+hr{ display:block; height:1px; border:0; border-top:1px solid #EBEBEB; margin:1em 0; padding:0 }
+em{ padding:0 0.2em; font-style:italic }
+sup, sub{ height:0; font-size:0.8em; line-height:1em; vertical-align:baseline; _vertical-align:bottom; position:relative }
+sup{ bottom:1ex }
+sub{ top:0.5ex }
+sup a:link, sup a:visited, sub a:link, sub a:visited{ color:#CD503A;border-bottom:none; }
+sup.footnote a:before{ content:"[" }
+sup.footnote a:after{ content:"]" }
+body {
+    line-height: 1.5em;
+    font-family: Georgia, Times, serif;
+    font-size: 1.2em;
+    font-weight: 300;
+    color: #444444;
+    background: #FEFEFE;
+    word-wrap: break-word;
+}
+
+p {
+    margin: 1.5em 0;
+    line-height: 1.5em
+}
+
+a:link, a:visited {
+    color:#CD503A;
+    text-decoration: none;
+    border-bottom: 1px solid #CD503A;
+}
+a:hover, a:active {
+    border-bottom: transparent;
+}
+
+a.image-link {
+    border: none;
+}
+
+a.rev {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+}
+
+a[href*="mailto:"]:link,
+a[href*="mailto:"]:visited,
+a[href*="xmpp:"]:link,
+a[href*="xmpp:"]:visited {
+    padding: 0.2em 0.3em;
+    color: #FEFEFE;
+    background: #CD503A;
+    text-decoration: none;
+    border-bottom: none;
+}
+a[href*="mailto:"]:hover,
+a[href*="mailto:"]:active,
+a[href*="xmpp:"]:hover,
+a[href*="xmpp:"]:active {
+    background: #676767;
+}
+
+h1, h2 {
+    margin: 0.3em 0 2.1em 0;
+    line-height: 1.3em;
+    font-size: 2.1em;
+    font-weight: 300;
+    -moz-hyphens: auto;
+    -o-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+h1 {
+    font-size: 3.5em;
+    line-height: 1.2em;
+    margin: 0.3em 0 0.5em 0;
+}
+h2 a:link,
+h2 a:visited {
+    color: #444444;
+    text-decoration: none;
+    border-bottom: inherit;
+    text-shadow: 2px 0px 0px #FFFFFF, 2px 2px 0px #FFFFFF, 2px -2px 0px #FFFFFF, 0px 0px 0px #FFFFFF, 0px 2px 0px #FFFFFF, 0px -2px 0px #FFFFFF, -2px 0px 0px #FFFFFF, -2px 2px 0px #FFFFFF, -2px -2px 0px #FFFFFF;
+}
+h2 a:hover,
+h2 a:active {
+    border: transparent;
+}
+
+h2 a[href*="djdn.de"]:link,
+h2 a[href*="djdn.de"]:visited {
+    border-bottom: inherit;
+    background-image: -webkit-linear-gradient(top, #FFF 50%, #239AD2 50%);
+    background-image: linear-gradient(to bottom, #FFF 50%, #239AD2 50%);
+    background-repeat: repeat-x;
+    background-size: 2px 2px;
+    background-position: 0 1em;
+}
+h2 a[href*="djdn.de"]:hover,
+h2 a[href*="djdn.de"]:active {
+    background: transparent;
+}
+
+h1.ext a:link,
+h1.ext a:visited,
+h2.ext a:link,
+h2.ext a:visited {
+    color: #444444;
+    text-decoration: none;
+    border-bottom: inherit;
+    text-shadow: 2px 0px 0px #FFFFFF, 2px 2px 0px #FFFFFF, 2px -2px 0px #FFFFFF, 0px 0px 0px #FFFFFF, 0px 2px 0px #FFFFFF, 0px -2px 0px #FFFFFF, -2px 0px 0px #FFFFFF, -2px 2px 0px #FFFFFF, -2px -2px 0px #FFFFFF;
+    background-image: -webkit-linear-gradient(top, #FFF 50%, #CD503A 50%);
+    background-image: linear-gradient(to bottom, #FFF 50%, #CD503A 50%);
+    background-repeat: repeat-x;
+    background-size: 2px 2px;
+    background-position: 0 1.1em;
+}
+h1.ext a:hover,
+h1.ext a:active,
+h2.ext a:hover,
+h2.ext a:active {
+    background: transparent;
+}
+h1.ext:after,
+h2.ext:after {
+    color: #CD503A;
+    content: " \2192";
+}
+
+h3 {
+    font-weight: 300;
+    font-family: Verdana, Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+h4, h5 {
+    font-weight: bold;
+}
+
+h6 {
+    padding: 1em 0;
+    border-top: 1px solid #EBEBEB;
+    border-bottom: 1px solid #EBEBEB;
+    color: #676767;
+    font-style: italic;
+}
+
+abbr, acronym {
+    cursor: help;
+    font-style: italic;
+    border-bottom: 1px dotted #CD503A;
+    text-decoration: none;
+}
+
+code {
+    font-family: courier, courier new;
+    color: #676767;
+}
+
+time, cite, figcaption {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 0.75em;
+    color: #676767;
+}
+
+i {
+    font-style: italic;
+}
+
+q, quote {
+    font-style: italic;
+    quotes:"\201E""\201C";
+}
+q:before, quote:before {
+    content: open-quote;
+}
+q:after, quote:after {
+    content: close-quote;
+}
+blockquote {
+    padding: 0 0 0 1em;
+    font-style: italic;
+    border-left: 3px solid #ECB14D;
+    color: #676767;
+}
+blockquote p {
+    quotes: "\201E""\201C";
+}
+blockquote p:before {
+    content: open-quote;
+    font-weight: bold;
+}
+blockquote p:after {
+    content: close-quote;
+    font-weight: bold;
+}
+
+blockquote, p > cite {
+    margin: 0;
+}
+
+blockquote cite:before {
+    content: "\2014 \2009";
+}
+
+ul {
+    margin: 1.5em 0 1.5em 2em;
+    list-style-type: circle;
+}
+ol {
+    margin: 1.5em 0 1.5em 2em;
+    list-style-type: decimal;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+figcaption p {
+    margin: 0;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #EBEBEB;
+}
+
+button {
+    padding: 0.4em 1em;
+    font-size: 1em;
+    font-weight: 400;
+    color: #FFFFFF;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+button:hover {
+    border: 1px solid rgba(63, 207, 172, 0.35);
+    background: #239AD2;
+}
+button:active {
+    border: 1px solid #CD503A;
+}
+
+
+/* Custom
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+.red {
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
+
+span.crossedout {
+    opacity: 0.85;
+    text-decoration: line-through;
+}
+
+#intro {
+    padding: 3.5em 0 2em 0;
+    background-color: #FF4342;
+    font-family: Verdana, Arial, sans-serif;
+}
+#intro h1,
+#intro h2 {
+    margin: inherit;
+    text-transform: uppercase;
+    -moz-hyphens: none;
+    -o-hyphens: none;
+    -webkit-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+#intro h1 {
+    display: inline-block;
+    margin: 0;
+    padding: 0.5em;
+    color: #EBEBEB;
+    font-size: 0.85em;
+    font-weight: 200;
+    border: 2px #EBEBEB solid;
+}
+#intro h1:before
+{
+    content:'\0023';
+}
+
+#intro h2 {
+    font-weight: 800;
+}
+
+
+#teaser ul,
+#search ul {
+    margin: 0;
+    list-style: none;
+}
+
+#teaser ul li,
+#search ul li {
+    margin: 1.5em 0 0 0;
+}
+
+#teaser h3 a[href*="djdn.de"]:link,
+#teaser h3 a[href*="djdn.de"]:visited {
+    border-bottom: inherit;
+    background-image: -webkit-linear-gradient(top, #FFF 50%, #239AD2 50%);
+    background-image: linear-gradient(to bottom, #FFF 50%, #239AD2 50%);
+    background-repeat: repeat-x;
+    background-size: 2px 2px;
+    background-position: 0 1.2em;
+}
+
+.article-quote blockquote {
+    margin: 0 0 1.5em 0;
+}
+
+#teaser {
+    padding: 2em 0;
+}
+
+#teaser h2 {
+    margin: 0;
+    padding: 0 0 0 0.5em;
+    font-family: Verdana, Arial, sans-serif;
+    border-left: 12px solid #444444;
+    text-transform: uppercase;  
+}
+
+#teaser h3 {
+    font-size: 1.3em;
+    line-height: 1.5em;
+}
+
+#teaser h3 a:link,
+#teaser h3 a:visited {
+    color: inherit;
+}
+
+#teaser h3 a[href*="djdn.de"]:hover,
+#teaser h3 a[href*="djdn.de"]:active {
+    background: transparent;
+}
+
+#search h2 {
+    margin: 0.5em 0;
+    padding: 0.5em 0;
+    font-size: 1.3em;
+    color: #B3B3B1;
+    border-top: 1px solid #B3B3B1;
+    border-bottom: 1px solid #B3B3B1;
+    text-transform: inherit;
+}
+
+#search ul {
+    margin-bottom: 1.5em;
+}
+
+#search form {
+    margin: 0 0 2.5em 0;
+    width: 100%;
+}
+#search form input[type='search'] {
+    padding: 0.5em;
+    font-size: 1em;
+    width: 75%;
+    border: 1px solid #B3B3B1;
+    border-radius: 0.3rem;
+    outline: none;
+    -webkit-appearance: none;
+}
+#search form input[type='search']:focus {
+    border: 1px solid #ECB14D;
+}
+#search form input[type='submit'] {
+    padding: 0.5em;
+    font-size: 1em;
+    border: 1px solid #B3B3B1;
+    border-radius: 0.3rem;
+    background: #B3B3B1;
+}
+#search form input[type='submit']:hover {
+    cursor: hand;
+}
+
+#contact ul {
+    margin: 1.5em 0;
+}
+#contact ul p {
+    margin: 0.25em 0;
+}
+#contact ul h3 {
+    display: inline;
+}
+#contact ul h3 p {
+    margin: 0 0 0.5em 0;
+}
+#contact li {
+    margin: 1.5em 0 0 0;
+    padding: 0.75em 0.75em 0.75em 1.75em;
+    list-style: none;
+    border-left: 5px solid #239AD2;
+    background: #EBEBEB;
+}
+#contact li.sub {
+    margin: 0;
+    border-left: 5px solid #B3B3B1;
+}
+#contact li a[href*="http"]:link {
+    font-family: courier, courier new;
+}
+
+#pagination {
+    overflow: auto;
+    margin: 0 0 1em 0;
+}
+
+#pagination ul {
+    margin-left: 0;
+}
+
+#pagination li {
+    display: inline-block;
+    list-style-type: none;
+}
+#pagination .next,
+#pagination .prev {
+    width: 49%;
+}
+#pagination .next {
+    text-align: right;
+}
+#pagination a:link,
+#pagination a:visited {
+    border-bottom: none;
+    padding: 0.3em 0.5em;
+    color: #FEFEFE;
+    background: #239AD2;
+}
+
+#social {
+    clear: both;
+    background: #F3F4F4;
+    overflow: auto;
+}
+
+#social ul li {
+    display: inline-block;
+    margin: 0.2em 0.5em 0.2em 0;
+    list-style-type: none;
+    margin-right: 1em;
+    line-height: 2em;
+}
+
+#social a:link,
+#social a:visited {
+    line-height: 2em;
+    padding: 0.3em 0.5em;
+    color: #FEFEFE;
+    background: #676767;
+    border-bottom: none;
+}
+
+#social a.twitter:hover,
+#social a.twitter:active {
+    background: #02ACED;
+}
+#social a.appnet:hover,
+#social a.appnet:active {
+    background: #8CC86B;
+}
+#social a.flickr:hover,
+#social a.flickr:active {
+    background: #FF0084;
+}
+#social a.delicious:hover,
+#social a.delicious:active {
+    background: #0079D4;
+}
+
+#social a.github:hover,
+#social a.github:active {
+    background: #171515;
+}
+
+#copyright {
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 0.75em;
+}

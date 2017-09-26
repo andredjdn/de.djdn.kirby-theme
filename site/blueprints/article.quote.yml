@@ -1,0 +1,77 @@
+title: Article (Quote)
+
+pages: false
+
+icon: quote-right
+
+files:
+  type: 
+    - image
+    - document
+  fields:
+    caption:
+      label: Caption
+      type: textarea
+    alternate-text:
+      label: Alternate Text
+      type: text
+      required: true
+    copyright:
+      label: Copyright
+      type: text
+    copyright-link:
+      label: Copyright Link
+      type: url
+    license:
+      label: License
+      type: text
+    license-link:
+      label: License Link
+      type: url
+
+fields:
+  title:
+    label: Title
+    type:  title
+    required: true
+    
+  coverimage:
+    label: Cover Image
+    type: image
+    width: 1/3
+  
+  author:
+    label: Author
+    type: user
+    required: true
+    width: 1/3
+    
+  date:
+    icon: calendar
+    label: Date
+    type: date
+    format: YYYY-MM-DD
+    placeholder: Select a date…
+    default: today
+    required: true
+    width: 1/3
+  
+  text:
+    label: Quote
+    type: textarea
+
+  by:
+    label: By
+    type: text
+    width: 1/2
+    required: true
+
+  lang:
+    label: Language
+    type: text
+    width: 1/2
+    required: true
+  
+  tags:
+    label: Tags
+    type: tags

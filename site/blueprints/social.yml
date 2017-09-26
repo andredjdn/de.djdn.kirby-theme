@@ -1,0 +1,28 @@
+title: Social
+
+pages: false
+
+icon: bullhorn
+
+fields:
+  channels:
+    label: Channels
+    type: structure
+    style: table
+    fields:
+      title:
+        label: Title
+        type: text
+      url:
+        label: URL
+        type: text
+      linktext:
+        label: Link Text
+        type: text
+      style:
+        label: Style
+        type: select
+        options:
+          github: Github
+          flickr: Flickr
+          twitter: Twitter

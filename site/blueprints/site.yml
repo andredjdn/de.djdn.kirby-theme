@@ -1,0 +1,27 @@
+title: Site
+
+pages: default
+
+fields:
+  title:
+    label: Title
+    type:  text
+    required: true
+
+  author:
+    label: Author
+    type:  text
+    required: true
+
+  description:
+    label: Description
+    type:  textarea
+
+    text:
+      label: Text
+      type: textarea
+      rquired: true
+    
+  keywords:
+    label: Keywords
+    type: tags

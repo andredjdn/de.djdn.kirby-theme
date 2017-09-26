@@ -1,0 +1,19 @@
+title: Site
+
+pages: default
+
+icon: search
+
+fields:
+  title:
+    label: Title
+    type:  text
+    required: true
+
+  noresult:
+    label: No result
+    type: textarea
+  
+  noquery:
+    label: No query
+    type: textarea
