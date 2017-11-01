@@ -3,7 +3,12 @@
 <head>
 
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,viewport-fit=cover,minimal-ui">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="djdn.de">
+
+    <meta name="msapplication-config" content="<?= url('assets/xml/ieconfig.xml') ?>" />
 
     <title><?= $site->title()->html() ?> / <?= $page->title()->html() ?></title>
     <meta name="description" content="<?= $site->description()->html() ?>">
@@ -18,14 +23,20 @@
 
     <link rel="shortcut icon" href="<?= url('assets/images/favicon.ico') ?>" type="image/x-icon">
     <link rel="icon" href="<?= url('assets/images/favicon.ico') ?>" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="<?= url('assets/images/apple-touch-icon.png') ?>" />
 
-    <?= css('assets/css/normalize.css') ?>
-    <?= css('assets/css/djdn.css') ?>
+    <link rel="icon" sizes="192x192" href="<?= url('assets/images/icon-192x192.png') ?>" />
+    <link rel="manifest" href="<?= url('assets/json/manifest.json') ?>">
+
+    <link rel="apple-touch-icon" size="114x114" href="<?= url('assets/images/apple-touch-icon-114x114.png') ?>" />
+    <link rel="apple-touch-icon" size="180x180" href="<?= url('assets/images/apple-touch-icon-180x180.png') ?>" />
+    <link rel="mask-icon" href="<?= url('assets/images/mask-icon.svg') ?>" color="#444444">
+
+    <?= css('assets/css/normalize.min.css') ?>
+    
+    <?= css('assets/css/djdn.min.css') ?>
 
 </head>
 <body<?= ($page->isHomePage()) ? ' class="home"' : '' ?>>
-
 <header>
     <div id="menubar">
         <a href="/" class="image-link"><img src="<?= url('assets/images/logo.svg') ?>" alt="<?= $site->title()->html() ?>" id="logo" /></a>
@@ -37,5 +48,7 @@
 
         </a>
     </div>
+
 <?php snippet('menu') ?>
+
 </header>
