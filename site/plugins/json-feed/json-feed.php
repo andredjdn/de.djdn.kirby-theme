@@ -9,6 +9,7 @@
  *
  * @version 1.3.0
  */
+
 Pages::$methods['jsonfeed'] = function ($pages, $params = []) {
 
     // set all default values
@@ -35,9 +36,6 @@ Pages::$methods['jsonfeed'] = function ($pages, $params = []) {
         ];
     }
 
-    // Set the Header
-    header::type('application/json');
-
     // Build the response
     $feed = [
         'version'       => 'https://jsonfeed.org/version/1',
@@ -46,6 +44,9 @@ Pages::$methods['jsonfeed'] = function ($pages, $params = []) {
         'feed_url'      => $options['feed'],
         'items'         => $items,
     ];
+
+    // Set HTTP response header
+    header::type('application/json', 'UTF-8');
 
     return json_encode($feed);
 };
